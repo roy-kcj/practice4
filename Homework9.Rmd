@@ -1,0 +1,23 @@
+---
+title: 'Homework 9'
+author: 
+  - Roy
+  - Xuan Wen
+date: "4/6/2023"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+```{r}
+# Read data
+av <- read.csv("https://raw.githubusercontent.com/fivethirtyeight/data/master/avengers/avengers.csv", stringsAsFactors = FALSE)
+head(av)
+```
+
+# Part one: Data tidying
+
+# Part two: Validation
