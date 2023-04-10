@@ -20,4 +20,57 @@ head(av)
 
 # Part one: Data tidying
 
+```{r}
+av_deaths = av %>%
+  gather(key = "Time", value = "Death", starts_with("Death")) %>%
+  mutate(Time = parse_number(Time),
+         Death = ifelse(Death == "NO", "no", ifelse(Death == "YES", "yes", "")),
+         Death = factor(Death)) %>%
+  select(URL, 
+         Name.Alias, 
+         Appearances, Current., 
+         Gender, 
+         Probationary.Introl, 
+         Year, 
+         Years.since.joining, 
+         Honorary,
+         Time,
+         Death)
+
+av_return = av %>%
+  gather(key = "Tim", value = "Return", starts_with("Return")) %>%
+  mutate(Time = parse_number(Tim),
+         Return = ifelse(Return == "NO", "no", ifelse(Return == "YES", "yes", "")),
+         Return = factor(Return)) %>%
+  select(URL, Name.Alias, 
+         Appearances, Current., 
+         Gender, 
+         Probationary.Introl, 
+         Year, 
+         Years.since.joining, 
+         Honorary,
+         Time,
+         Return)
+```
+
 # Part two: Validation
+
+Out of 173 listed Avengers, my analysis found that 69 had died at least one time after they joined the team. That’s about 40 percent of all people who have ever signed on to the team. 
+
+```{r}
+num_death = av_deaths %>% 
+  filter(Death == "yes") %>% 
+  distinct(URL) %>%
+  nrow()
+
+# 69 observations as pointed out by the article
+
+total = av %>% nrow()
+
+pct_death = num_death / total * 100
+
+sprintf("Out of 173 listed Avengers, %d has died at least once since joining and that's %.2f%% of all people who joined", num_death, pct_death)
+
+# 39.88 is similar enough to 40 to round up
+```
+
