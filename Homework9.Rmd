@@ -7,6 +7,13 @@ date: "4/6/2023"
 output: html_document
 ---
 
+Team members:
+
+- Roy Khoo
+- Xuan Wen Loo
+
+Git repo: https://github.com/roy-kcj/practice4
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
